@@ -3,9 +3,9 @@ package collectionsManager.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import collectionsManager.model.Collection;
+import collectionsManager.model.Commentary;
 
 @Repository
-public interface CollectionRepository extends CrudRepository<Collection, Long>{
-
+public interface CommentaryRepository extends CrudRepository<Commentary, Long> {
+	
 }
