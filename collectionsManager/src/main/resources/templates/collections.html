@@ -1,0 +1,45 @@
+﻿<!DOCTYPE >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="main.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+	<header th:insert="${header} :: header"> </header>
+	<h1>Collections</h1>
+	<div class="form-group blu-margin">
+		<form action="/createCollections" th:action="@{/createCollections}"
+			th:method="get">
+			<input type="hidden" name="userId" th:value="${userId}" />
+
+			<h1>
+				<button type="submit" id="click">Create new collection</button>
+			</h1>
+		</form>
+	</div>
+
+	<table>
+		<tr>
+			<th th:name='cid'>id</th>
+			<th>Name of the Collection</th>
+			<th>Description</th>
+			<th>Thema</th>
+			<th>Picture</th>
+		</tr>
+		<tr th:each="c : ${collections}">
+			<td th:text="${c.id}"></td>
+			<td th:text="${c.name}"></td>
+			<td th:utext="${c.about}"></td>
+			<td th:text="${c.thema}"></td>
+			<td><a th:href="${c.pictureURL}" th:text="${c.pictureURL}"></a></td>
+			<td><a th:href="@{/show/{id}(id=${c.id})}">See details</a></td>
+			<td><a th:href="@{/edit/{id}(id=${c.id})}">Edit</a></td>
+			<td><a th:href="@{/delete/{id}(id=${c.id})}">Delete</a></td>
+		</tr>
+	</table>
+
+
+</body>
+</html>

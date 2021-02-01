@@ -1,0 +1,26 @@
+﻿<!DOCTYPE >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="main.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+<header th:insert="header2.html :: header"> </header>
+	
+	<h1><div th:text="${message}"></div></h1>
+	<h1>Registration</h1>
+	<div class="form-group blu-margin">
+		<form action="/createUser" th:action="@{/createUser}" th:method="get">
+		<table>
+		<tr><td>	Username: </td><td><input type="text" name="username" /></td></tr>
+		<tr><td>	Password: </td><td><input type="text" name="password" />	</td></tr>
+		<tr><td>	E-mail: </td><td><input type="text" name="email" />	</td></tr>
+		<tr><td>	<button type="submit" id="click">Register new user</button></td></tr>
+		</table>
+		</form>
+	</div>
+</body>
+
+</html>

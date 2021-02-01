@@ -1,0 +1,39 @@
+﻿<!DOCTYPE >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify@3.1.0/dist/tagify.css" />
+    <link href="main.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify@3.1.0/dist/tagify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+</head>
+
+<body>
+<header th:insert="${header} :: header"> </header>
+<h1>Form</h1>
+<form action="/createItem" th:action="@{/createItem}" th:method="get">
+    	<table>
+    	<tr><td>Item Name:</td><td> <input type="text" name="itemName"  /></td></tr>
+        <tr><td>Tags: </td><td><input type="text" name='tags'  th:value="${tag}"/></td></tr>
+        <tr><input type="hidden" name="collectId" th:value="${collectedId}" /></tr>
+        </table>
+<button type="submit" id="click">sendInfo</button>
+</form>
+<script>
+var input = document.querySelector('input[name=tags]'), whitelist = [ "one, two, tree" ]; 
+ 
+ var tagify = new Tagify(input, {
+    whitelist: input.value.trim().split(/\s*,\s*/),
+    maxTags: 5,
+    dropdown: {
+    	maxItems: 20,
+    	classname: "tags-look",
+    	enabled: 0,
+    	closeOnSelect: false
+    }
+})
+</script>
+</body>
+
+</html>

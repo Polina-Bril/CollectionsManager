@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="main.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<header th:insert="${header} :: header"> </header>
+	<table>
+		<tr>
+			<td>Search results for: </td>
+			<td th:text="${parametr}"></td>
+		</tr>
+	</table>
+	<ol>
+		<li th:each="item : ${searchResults}"><span th:text="${item.id}"></span>
+			- <b><span th:text="${item.name}"></span></b> - <span
+			th:text="${item.tags}"></span> - <span th:text="${item.collectionId}"></span> -
+			<b> <a th:href="@{/edit/{idCollection}/showItem/{id}(id=${item.id}, idCollection=${item.collectionId})}">See details</a></b>
+			</li>
+	</ol>
+</body>
+</html>

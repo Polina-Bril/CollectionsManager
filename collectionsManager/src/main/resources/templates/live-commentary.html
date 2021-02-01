@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/main.css" rel="stylesheet">
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/app.js"></script>
+</head>
+<body onload="connect()" onunload="disconnect()">
+<header th:insert="${header} :: header"> </header>
+	<div id="main-page" class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Our item and its commentary:</h2>
+				<table id="items" class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Item name</th>
+							<th>Tags</th>
+							<th>Users That Like it</th>
+							<th>CollectionID</th>
+							<th>Created</th>
+						</tr>
+					</thead>
+					<tbody id="item-description"></tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<form>
+					<div class="form-group">
+						<label for="name">Live commentary: </label> <input type="text"
+							id="commentary" class="form-control"
+							placeholder="your commentary here...">
+					</div>
+					  <input type="hidden" id="itemId" name="itemId" th:value="${itId}" />
+					<button id="publish" class="btn btn-primary" type="submit">Publish</button>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<table id="comments" class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>DataBase commentary</th>
+						</tr>
+					</thead>
+					<tbody id="dbComments"></tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h1></h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<table id="commentary" class="table table-striped">
+					<thead>
+						<tr>
+							<th>New commentaries</th>
+						</tr>
+					</thead>
+					<tbody id="comment">
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

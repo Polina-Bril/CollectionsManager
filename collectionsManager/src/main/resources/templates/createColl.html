@@ -1,0 +1,41 @@
+﻿<!DOCTYPE >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="main.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<header th:insert="${header} :: header"> </header>
+	<h1>Collection Saved</h1>
+	<table>
+		<tr>
+			<th th:name='cid'>id</th>
+			<th>Name of the Collection</th>
+			<th>Description</th>
+			<th>Thema</th>
+		</tr>
+		<tr th:each="g : ${collection}">
+			<td th:text="${g.id}"></td>
+			<td th:text="${g.name}"></td>
+			<td th:utext="${g.about}"></td>
+			<td th:text="${g.thema}"></td>
+		</tr>
+	</table>
+	<h1>Upload the picture for the collection</h1>
+	<div>
+		<form id="fileUploadForm" method="POST" enctype="multipart/form-data"
+			th:action="@{/api/upload/multi/{id}(id=${collection.id})}">
+			<table>
+				<tr>
+					<td>File to upload:</td>
+					<td><input type="file" name="file" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Upload" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

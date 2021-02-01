@@ -1,0 +1,54 @@
+﻿<!DOCTYPE >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="main.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+	<header th:insert="header.html :: header"> </header>
+
+	<table>
+		<tr>
+			<td>Edit User: id =</td>
+			<td th:text="${user.id}"></td>
+		</tr>
+	</table>
+	<div>
+		<a th:href="@{/admin/show/{id}(id=${user.id})}">Back to the User</a>
+	</div>
+
+	<div class="form-group blu-margin">
+		<form action="/admin/saveChangesInUser"
+			th:action="@{/admin/saveChangesInUser}" th:method="get">
+		<table>
+		<tr>
+			<td>
+				Username: </td><td><input type="text" name="username"
+					th:value="${user.username}" />
+			</td></tr>
+			<tr><td>
+				Password:</td><td> <input type="text" name="password"
+					th:value="${user.password}" />
+			</td></tr>
+			<tr><td>
+				E-mail: </td><td><input type="text" name="email" th:value="${user.email}" />
+			</td></tr>
+			<tr><td>
+				Roles: </td><td><input type="text" name="roles" th:value="${user.roles}" />
+			</td></tr>
+			<tr><td>
+				isActive:</td><td> <input type="text" name="active" th:value="${user.active}" />
+			</td></tr>
+			</table>
+			<input type="hidden" name="userId" th:value="${user.id}" />
+
+			<p>
+				<button type="submit" id="click">Save changes</button>
+			</p>
+		</form>
+	</div>
+</body>
+
+</html>

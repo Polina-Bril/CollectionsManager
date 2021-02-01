@@ -1,0 +1,41 @@
+﻿<!DOCTYPE >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="main.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+	<header th:insert="${header} :: header"> </header>
+	<h1>Create new Collection</h1>
+	<div class="form-group blu-margin">
+		<form action="/createCollection" th:action="@{/createCollection}"
+			th:method="get">
+			<input type="hidden" name="userId" th:value="${userId}" />
+			<table>
+				<tr>
+					<td>Collection Name:</td>
+					<td><input type="text" name="collectionName" /></td>
+				</tr>
+				<tr>
+					<td>Description:</td>
+					<td><input type="text" name="about" /></td>
+				</tr>
+				<tr>
+					<td>Select thema:</td>
+					<td><select class="form-control" name="dropThema">
+							<option th:each="th : ${themas}" th:value="${th}" th:text="${th}"></option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>
+						<button type="submit" id="click">Create Collection</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+
+</html>

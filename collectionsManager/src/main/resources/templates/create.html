@@ -1,0 +1,26 @@
+﻿<!DOCTYPE >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="main.css" rel="stylesheet">
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+</head>
+
+<body>
+<header th:insert="${header} :: header"> </header>
+    <h1>Item Saved</h1>
+
+<table>
+<tr>
+        <th th:name='cid'>id</th>
+        <th>Name of the Item</th>
+        <th>Tags</th>
+      </tr>
+      <tr th:each="g : ${item}">
+        <td th:text="${g.id}"></td>
+        <td th:text="${g.name}"></td>
+        <td th:text="${g.tags}"></td>
+      </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/@yaireo/tagify@3.1.0/dist/tagify.css" />
+<link href="main.css" rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/@yaireo/tagify@3.1.0/dist/tagify.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+	<header th:insert="${header} :: header"> </header>
+	<h1><div th:text="${loginMessage}"></div></h1>
+	<h1><div th:text="${registrationSuccess}"></div></h1>	
+	<h1>Biggest Collections</h1>
+
+	<table>
+		<tr>
+			<th th:name='cid'>id</th>
+			<th>Name of the Collection</th>
+			<th>Description</th>
+			<th>Thema</th>
+			<th>Picture</th>
+			
+		</tr>
+		<tr th:each="c : ${collection}">
+			<td th:text="${c.id}"></td>
+			<td th:text="${c.name}"></td>
+			<td th:utext="${c.about}"></td>
+			<td th:text="${c.thema}"></td>
+			<td><a th:href="${c.pictureURL}" th:text="${c.pictureURL}"></a></td>
+			<td><a th:href="@{/show/{id}(id=${c.id})}">See details</a></td>
+		
+		</tr>
+	</table>
+	<h1>Last Items</h1>
+	<table>
+		<tr>
+			<th th:name='id'>id</th>
+			<th>Item name</th>
+			<th>Tags</th>
+		</tr>
+		<tr th:each="it : ${items}">
+			<td th:text="${it.id}"></td>
+			<td th:text="${it.name}"></td>
+			<td th:text="${it.tags}"></td>
+			<td><a th:href="@{/edit/{idCollection}/showItem/{id}(id=${it.id}, idCollection=${it.collectionId})}">See details</a></td>
+		
+		</tr>
+	</table>
+	<form action="/searchItem" th:action="@{/searchItem}" th:method="get">
+		<p>
+		<input type="text" name='tags' th:value="${tag}" />
+		</p>
+		<button type="submit" id="click">Search</button>
+	</form>
+	<script>
+		var input = document.querySelector('input[name=tags]'), whitelist = [ "one, two, tree" ];
+
+		var tagify = new Tagify(input, {
+			whitelist : input.value.trim().split(/\s*,\s*/)
+		})
+	</script>
+</body>
+
+</html>

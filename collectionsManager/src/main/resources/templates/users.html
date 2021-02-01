@@ -1,0 +1,37 @@
+﻿<!DOCTYPE >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="main.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+	<header th:insert="header.html :: header"> </header>
+	<h1>Users</h1>
+
+	<table>
+		<tr>
+			<th th:name='cid'>id</th>
+			<th>Username</th>
+			<th>Password</th>
+			<th>Email</th>
+			<th>Roles</th>
+			<th>is Active</th>
+		</tr>
+		<tr th:each="u : ${users}">
+			<td th:text="${u.id}"></td>
+			<td th:text="${u.username}"></td>
+			<td th:text="${u.password}"></td>
+			<td th:text="${u.email}"></td>
+			<td th:text="${u.roles}"></td>
+			<td th:text="${u.active}"></td>
+			<td><a th:href="@{/admin/show/{id}(id=${u.id})}">See details</a></td>
+			<td><a th:href="@{/admin/edit/{id}(id=${u.id})}">Edit</a></td>
+			<td><a th:href="@{/admin/delete/{id}(id=${u.id})}">Delete</a></td>
+		</tr>
+	</table>
+
+
+</body>
+</html>
